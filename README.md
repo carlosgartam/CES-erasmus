@@ -4,10 +4,10 @@ Curses for helping new erasmus students to make their learning agreement.
 
 # Roles and responsabilities:
   
- Carlos
- Irene
- Ines
- Javi
+ Carlos: Product Owner, Software developer
+ Irene : Scrum Master, Software Developer
+ Ines: Software Developer , Tester
+ Javi : Software Developer , Tester
  
  
 # Comunication strategies:
