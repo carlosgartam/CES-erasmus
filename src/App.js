@@ -2,15 +2,21 @@
 import './App.css';
 import './firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Routes, BrowserRouter,Route} from 'react-router-dom'
 import ListSubjects from './components/ListSubjects';
-
+import Subject from './components/Subject';
+import User from './components/User';
 function App() {
   return (
-    <div >
-      <div>
-      <Nav/>
-      </div>      
-      <ListSubjects/>
+    <div> 
+      <Nav/>  
+      <BrowserRouter> 
+      <Routes>
+      <Route path="/" exact element={<ListSubjects/>}/>
+      <Route path="/:id" exact element={<Subject/>}/>
+      <Route path="/login" exact element={<User/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
