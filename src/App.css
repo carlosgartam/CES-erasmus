@@ -1,0 +1,7 @@
+#subject{
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.274);
+}
+#subject:hover{
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.644);
+    background-color: rgb(145, 179, 209);
+}

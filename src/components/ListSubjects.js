@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {db} from '../firebase'
+import {Link} from 'react-router-dom'
 
 
-const ListSubjects = () => {
+export default function ListSubjects () {
     const [subjects, setSubjects] = useState([])
     const getSubjects = async () => {
         const listSub = [];
@@ -14,21 +15,22 @@ const ListSubjects = () => {
         setSubjects(listSub);
         })       
     }
-    console.log(subjects)
+    
     useEffect(() => {
         getSubjects()}, [])
     
-    return( <div>
+    return( <div className="row justify-content-around mt-5">
         {subjects.map(sub => (
-            <div key={sub.Id}>
-                {sub.Name}
+                <div className="card col-10 col-md-3 m-3" id="subject" key={sub.Id}>
+                    <Link to={`/${sub.Id}`}>
+                    <div className="card-body">
+                        <h5 className="card-title">{sub.Name}</h5>
+                        <h6 className="card-subtitle mb-2 text-muted">Semester: {sub.Semester}</h6>
+                        <p className="card-text">{sub.Description}</p>
+                    </div>
+                    </Link>
                 </div>
         ))}
     </div>
     );
 }
-function subjectView({id}) {
-
-}
-
-export default ListSubjects;
