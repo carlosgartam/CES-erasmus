@@ -2,15 +2,16 @@
 import './App.css';
 import './firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Routes, BrowserRouter,Route} from 'react-router-dom'
+import {Routes, BrowserRouter,Route, Link} from 'react-router-dom'
 import ListSubjects from './components/ListSubjects';
 import Subject from './components/Subject';
 import User from './components/User';
 function App() {
   return (
     <div> 
-      <Nav/>  
+        
       <BrowserRouter> 
+      <Nav/>
       <Routes>
       <Route path="/" exact element={<ListSubjects/>}/>
       <Route path="/:id" exact element={<Subject/>}/>
@@ -23,8 +24,8 @@ function App() {
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">ErasmusHelper</a>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" id='navbar'>
+      <Link className="navbar-brand px-5 py-3" to="/">ErasmusHelper</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
