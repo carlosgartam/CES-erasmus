@@ -21,8 +21,6 @@ export default function ListSubjects () {
     useEffect(() => {
         getSubjects()}, [])
         const { currentUser } = useContext(AuthContext);
-
-
         if (!currentUser) {
             return <Navigate to="/login" />;
           }

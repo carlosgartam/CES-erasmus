@@ -1,5 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
+import { Navigate} from "react-router-dom";
 import {app} from "../firebase";
+import { AuthContext } from "./Auth.js";
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -9,11 +11,17 @@ const SignUp = ({ history }) => {
       await app
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value);
-      history.push("/");
+      
     } catch (error) {
       alert(error);
     }
   }, [history]);
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>
