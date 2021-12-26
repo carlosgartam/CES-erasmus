@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import {db} from '../firebase'
-import {useParams} from 'react-router-dom'
+import {useParams,Navigate} from 'react-router-dom'
 import Comments from './Comments'
+import { AuthContext } from "./Auth.js";
 
 export default function Subject(){
     const [subject, setSubject] = useState([])
@@ -15,7 +16,13 @@ export default function Subject(){
                 setSubject(query.data());
             })
         
-        }       
+        }     
+        const { currentUser } = useContext(AuthContext);
+
+
+        if (!currentUser) {
+            return <Navigate to="/login" />;
+          }  
 
     return (
             <div className= "container-fluid">
@@ -27,27 +34,27 @@ export default function Subject(){
                 </div>
                 <div className="row justify-content-around ">
                     <div className="col-7 p-5 my-5" id='TitleSub'>   
-                        <p> <h4 className="main-heading t-5">Objective:    {subject.Objective} </h4></p> 
+                         <h4 className="main-heading t-5">Objective:    {subject.Objective} </h4> 
                         
                         
-                        <p><h4 className="main-heading">Number of Ects:   {subject.Ects} </h4></p>
+                        <h4 className="main-heading">Number of Ects:   {subject.Ects} </h4>
                         
                            
 
-                        <p><h4 className="main-heading">Room:   {subject.Room} </h4></p>
+                        <h4 className="main-heading">Room:   {subject.Room} </h4>
 
-                        <p><h4 className="main-heading">Semester:   {subject.Semester} </h4></p>
+                        <h4 className="main-heading">Semester:   {subject.Semester} </h4>
 
-                        <p><h4 className="main-heading">Teacher:   {subject.Teacher} </h4></p>
+                        <h4 className="main-heading">Teacher:   {subject.Teacher} </h4>
 
-                        <p> <h4 className="main-heading">Programme content: </h4>
-                            {subject.ProgrammeContent} </p> 
+                         <h4 className="main-heading">Programme content: </h4>
+                           <p> {subject.ProgrammeContent}</p>  
 
 
                     </div> 
                     <div className="col-3 p-5 my-5" id='comment'> 
 
-                        <p><Comments id={id}></Comments></p>
+                        <div><Comments id={id}></Comments></div>
 
                        
                         </div>

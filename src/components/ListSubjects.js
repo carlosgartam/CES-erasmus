@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import {db} from '../firebase'
-import {Link} from 'react-router-dom'
+import {Link,Navigate} from 'react-router-dom'
+import { AuthContext } from "./Auth.js";
 
 
 export default function ListSubjects () {
@@ -16,14 +17,20 @@ export default function ListSubjects () {
         })       
     }
     
+    
     useEffect(() => {
         getSubjects()}, [])
+        const { currentUser } = useContext(AuthContext);
+        if (!currentUser) {
+            return <Navigate to="/login" />;
+          }
     
     return( 
     <div className="container-fluid" id="container">
         
+        
         <div className='row justify-content-center text-center pt-5'>
-            <div clasName='col-8 ' id='TitleList'>List of Subjects</div> 
+            <div className='col-8 ' id='TitleList'>List of Subjects</div> 
         </div>
         <div className="row justify-content-around mt-5">
         {subjects.map(sub => (
@@ -32,7 +39,7 @@ export default function ListSubjects () {
                     <div className="card-body">
                         <h5 className="card-title">{sub.Name}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">Semester: {sub.Semester}</h6>
-                        <p className="card-text" >{sub.Objective}</p>
+                        <div className="card-text" >{sub.Objective}</div>
                     </div>
                     </Link>
                 </div>
