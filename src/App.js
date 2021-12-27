@@ -11,6 +11,7 @@ import LogIn from './components/LogIn';
 import SingUp from './components/SingUp';
 import Nav from "./components/Nav";
 import {AuthProvider} from './components/Auth';
+import LA from './components/LA';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/singup" exact element={<SingUp/>}/>
         <Route path="/" element={<ListSubjects/>}/>
         <Route path="/:id" exact element={<Subject/>}/>
+        <Route path="/LA" exact element={<LA/>}/>
         
       </Routes>
       </BrowserRouter>
