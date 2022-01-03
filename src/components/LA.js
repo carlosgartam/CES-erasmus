@@ -1,8 +1,8 @@
 
 import React, {useState, useEffect,useContext} from 'react'
-
+import { AuthContext } from "./Auth.js";
 import {db} from '../firebase'
-
+import {Link,Navigate} from 'react-router-dom'
 
 
 export default function LA(){
@@ -19,6 +19,13 @@ export default function LA(){
         })       
     }
 
+    useEffect(() => {
+        getLas()}, [])
+        const { currentUser } = useContext(AuthContext);
+        if (!currentUser) {
+            return <Navigate to="/login" />;
+          }
+
     return( 
         <div className="container-fluid" id="container">
             
@@ -31,14 +38,15 @@ export default function LA(){
                     <div className="card col-10 col-md-3 m-3" id="learningject" key={learning.Id}>
                       
                         <div className="card-body">
-                            <h5 className="card-title">{learning.ListDestiny}</h5>
-                            
-                            <div className="card-text" >{learning.ListHome}</div>
-                        </div>
-                       
+                            <h5 className="card-title">{learning.Name}</h5>
+                        </div>                       
                     </div>
             ))}
             </div>
+
+            <div className='mb-md-5 mt-md-4 pb-5 text-center'>
+            <button className="btn btn-outline-light col-md-3 btn-lg px-5" type="submit">Add new Learning</button>
+                    </div>
         </div>
         );
 }
