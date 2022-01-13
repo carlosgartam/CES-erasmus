@@ -36,10 +36,11 @@ export default function LA(){
             <div className="row justify-content-around mt-5">
             {LAs.map(learning => (
                     <div className="card col-10 col-md-3 m-3" id="learningject" key={learning.Id}>
-                      
+                        <Link to={`/LA/${learning.Id}`} id="box">
                         <div className="card-body">
                             <h5 className="card-title">{learning.Name}</h5>
-                        </div>                       
+                        </div>  
+                        </Link>                     
                     </div>
             ))}
             </div>

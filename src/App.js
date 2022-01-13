@@ -12,6 +12,7 @@ import SingUp from './components/SingUp';
 import Nav from "./components/Nav";
 import {AuthProvider} from './components/Auth';
 import LA from './components/LA';
+import Learning from './components/LAindividual';
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route path="/" element={<ListSubjects/>}/>
         <Route path="/:id" exact element={<Subject/>}/>
         <Route path="/LA" exact element={<LA/>}/>
-        
+        <Route path="/LA/:id" exact element={<Learning/>}/>
+
       </Routes>
       </BrowserRouter>
     </div>
