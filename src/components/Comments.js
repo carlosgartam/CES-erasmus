@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import {db} from '../firebase'
+import { AuthContext } from "./Auth.js";
 
 export default function Comments(props){
     const [comments, setComments] = useState([])
+    const { currentUser } = useContext(AuthContext);
     const [comment, setComment ] = useState({
         Description:'',
-        UserId:'Anonime'
+        UserId:currentUser.email
     })
+    
     console.log(props.id)
     const getComments = async () => {
         
